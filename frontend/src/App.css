@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Page ── */
+.App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0f;
+  position: relative;
+}
+
+/* Ambient purple glow */
+.App::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Search: centred, sits in normal flow ── */
+.search_wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  background: #0d0d18;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.search_input {
+  flex: 1;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-family: "Fira Code", monospace;
+  letter-spacing: 0.04em;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e2e8f0;
+  caret-color: #7c3aed;
+}
+
+.search_input::placeholder {
+  color: #374151;
+}
+
+.search_input:focus {
+  background: rgba(124, 58, 237, 0.04);
+}
+
+.search_button {
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  border: none;
+  padding: 0 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.search_button:hover {
+  filter: brightness(1.15);
+}
+
+.search_button:active {
+  transform: scale(0.96);
+}
+
+.search_button img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+/* ── Result box: absolutely centred over search ── */
+.result_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  width: 420px;
+  background: linear-gradient(135deg, #13131f 0%, #1a1030 100%);
+  border: 1px solid rgba(124, 58, 237, 0.45);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow:
+    0 0 0 1px rgba(124, 58, 237, 0.1),
+    0 8px 40px rgba(124, 58, 237, 0.2),
+    inset 0 1px 0 rgba(167, 139, 250, 0.08);
+}
+
+.result_box::before {
+  content: 'PLAYER PROFILE';
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  font-size: 10px;
+  font-family: "Fira Code", monospace;
+  letter-spacing: 0.18em;
+  color: #7c3aed;
+  background: #0d0d18;
+  padding: 0 8px;
+}
+
+.profile_picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2d1b69 0%, #1e1040 100%);
+  border: 2px solid rgba(124, 58, 237, 0.4);
+  flex-shrink: 0;
+}
+
+.result_info h2 {
+  font-family: "Chelsea Market", system-ui;
+  font-size: 20px;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.result_info p {
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+}
